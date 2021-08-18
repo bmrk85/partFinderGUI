@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>Procik</h2>
+<mat-dialog-content>
+  <div class="gpu">
+
+    <mat-form-field>
+      <input (keyup)="applyFilter($event.target.value)" matInput  placeholder="filter">
+    </mat-form-field>
+
+    <mat-table class="gpu-table mat-elevation-z8" [dataSource]="dataSource">
+      <ng-container matColumnDef="manufacturer">
+        <mat-header-cell *matHeaderCellDef>Gyártó</mat-header-cell>
+        <mat-cell *matCellDef="let gpu">{{gpu.manufacturer}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="series">
+        <mat-header-cell *matHeaderCellDef>Sorozat</mat-header-cell>
+        <mat-cell *matCellDef="let gpu">{{gpu.modelName}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="modelName">
+        <mat-header-cell *matHeaderCellDef>Név</mat-header-cell>
+        <mat-cell *matCellDef="let gpu">{{gpu.fullName}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="cheapestShop">
+        <mat-header-cell *matHeaderCellDef>Legolcsóbb bolt</mat-header-cell>
+        <mat-cell *matCellDef="let gpu">{{gpu.cheapestShop}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="cheapestPrice">
+        <mat-header-cell *matHeaderCellDef>Legolcsóbb ár</mat-header-cell>
+        <mat-cell *matCellDef="let gpu">{{gpu.cheapestPrice}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="lastUpdated">
+        <mat-header-cell *matHeaderCellDef>Utoljára frissítve</mat-header-cell>
+        <mat-cell *matCellDef="let gpu">{{gpu.lastUpdated | date}}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns" (click)="onRowClicked(row)"></mat-row>
+
+    </mat-table>
+  </div>
+</mat-dialog-content>

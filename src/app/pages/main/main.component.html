@@ -1,0 +1,50 @@
+<div>
+  <h2>Processzor</h2>
+  <button mat-button color="primary" (click)="changeCpuManufacturer($event.target.innerText)">AMD</button>
+  <button mat-button color="primary" (click)="changeCpuManufacturer($event.target.innerText)">Intel</button>
+  <div *ngIf="chosenCpu.manufacturer === 'AMD'">
+    <button mat-button color="primary" (click)="changeCpuSeries($event.target.innerText)">Ryzen 3</button>
+    <button mat-button color="primary" (click)="changeCpuSeries($event.target.innerText)">Ryzen 5</button>
+    <button mat-button color="primary" (click)="changeCpuSeries($event.target.innerText)">Ryzen 7</button>
+  </div>
+  <div *ngIf="chosenCpu.manufacturer === 'Intel'">
+    <button mat-button color="primary" (click)="changeCpuSeries($event.target.innerText)">I3</button>
+    <button mat-button color="primary" (click)="changeCpuSeries($event.target.innerText)">I5</button>
+    <button mat-button color="primary" (click)="changeCpuSeries($event.target.innerText)">I7</button>
+  </div>
+  <div *ngIf="chosenCpu.manufacturer !== undefined && chosenCpu.series !== undefined">
+    <button mat-button color="primary" (click)="openDialog(chosenCpu.manufacturer, 'cpu', chosenCpu.series)">Show CPUs
+    </button>
+  </div>
+  <div *ngIf="chosenCpu">
+    <mat-card>Választott processzor
+      <mat-card-title>{{chosenCpu.manufacturer}} {{chosenCpu.series}} {{chosenCpu.modelName}}</mat-card-title>
+      <mat-card-subtitle>Hol: {{chosenCpu.cheapestShop}}</mat-card-subtitle>
+      <mat-card-content>Ár: {{chosenCpu.cheapestPrice}}</mat-card-content>
+    </mat-card>
+  </div>
+  <h2>GPU</h2>
+  <button mat-button color="primary" (click)="changeGpuManufacturer($event.target.innerText)">AMD</button>
+  <button mat-button color="primary" (click)="changeGpuManufacturer($event.target.innerText)">Nvidia</button>
+  <div *ngIf="chosenGPU.manufacturer === 'AMD'">
+    <button mat-button color="primary" (click)="changeGpuSeries($event.target.innerText)">RX 5xx</button>
+    <button mat-button color="primary" (click)="changeGpuSeries($event.target.innerText)">RX 5xxx</button>
+    <button mat-button color="primary" (click)="changeGpuSeries($event.target.innerText)">RX 6xxx</button>
+  </div>
+  <div *ngIf="chosenGPU.manufacturer === 'Nvidia'">
+    <button mat-button color="primary" (click)="changeGpuSeries($event.target.innerText)">10xx</button>
+    <button mat-button color="primary" (click)="changeGpuSeries($event.target.innerText)">1xxx</button>
+    <button mat-button color="primary" (click)="changeGpuSeries($event.target.innerText)">RTX 20xx</button>
+    <button mat-button color="primary" (click)="changeGpuSeries($event.target.innerText)">RTX 30xx</button>
+  </div>
+  <div *ngIf="chosenGPU.manufacturer !== undefined && chosenGPU.series !== undefined">
+    <button mat-button color="primary" (click)="openDialog(chosenGPU.manufacturer, 'gpu', chosenGPU.series)">Show GPUs</button>
+  </div>
+  <div *ngIf="chosenGPU">
+    <mat-card>Választott GPU
+      <mat-card-title>{{chosenGPU.fullName}}</mat-card-title>
+      <mat-card-subtitle>Hol: {{chosenGPU.cheapestShop}}</mat-card-subtitle>
+      <mat-card-content>Ár: {{chosenGPU.cheapestPrice}}</mat-card-content>
+    </mat-card>
+  </div>
+</div>
